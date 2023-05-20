@@ -6,9 +6,20 @@
         int slot = int.Parse(Console.ReadLine());
         int[] way = new int[waypoint];
         Process(ref way);
-        Console.WriteLine(Calculation(way,slot));
+        Console.WriteLine(Calculation(way, slot));
 
     }
+    static int Bestnum(int i, int j)
+    {
+        {
+            if (i > j)
+            {
+                return i;
+            }
+            return j;
+        }
+    }
+
     static void Process(ref int[] way)
     {
         for (int i = 0; i < way.Length; i++)
@@ -20,24 +31,17 @@
     {
         int top = 0;
         int select = 0;
-        for (int i = slot; i < (way.Length+1)-(2*slot) ; i++)
+        for (int i = slot; i < (way.Length + 1) - (2 * slot); i++)
         {
             select = way[i];
             for (int j = 1; j <= slot; j++)
             {
-                select =select + way[i - j] + way[i + j];
+                select = select + way[i - j] + way[i + j];
             }
             top = Bestnum(select, top);
         }
         return top;
     }
 
-    static int Bestnum(int i, int j)
-    {
-        if (i > j)
-        {
-            return i;
-        }
-        return j;
-    }
+
 }
